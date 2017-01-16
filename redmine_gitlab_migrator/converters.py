@@ -9,8 +9,15 @@ log = logging.getLogger(__name__)
 # Utils
 
 
+def redmine_username_to_gitlab_username(redmine_username):
+    if redmine_username == 'hans':
+        return 'eighthave'
+    return redmine_username
+
+
 def redmine_uid_to_login(redmine_id, redmine_user_index):
-    return redmine_user_index[redmine_id]['login']
+    username = redmine_user_index[redmine_id]['login']
+    return redmine_username_to_gitlab_username(username)
 
 
 def redmine_uid_to_gitlab_uid(redmine_id,
