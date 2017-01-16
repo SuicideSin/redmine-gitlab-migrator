@@ -29,7 +29,15 @@ class GitlabInstance:
         self.api = client
 
     def get_all_users(self):
-        return self.api.get('{}/users'.format(self.url))
+        all_users = []
+        for user in ('n8fr8', 'vitriolix', 'knewye', 'eighthave', 'der_die_das_jojo',
+                     'abeluck',):
+            print('GET', '{}/users?username={}'.format(self.url, user))
+            all_users += self.api.get('{}/users?username={}'.format(self.url, user))
+        import pprint
+        print('all_users:')
+        pprint.pprint(all_users)
+        return all_users
 
     def get_users_index(self):
         """ Returns dict index of users (by login)
